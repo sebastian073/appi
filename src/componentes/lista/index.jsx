@@ -19,9 +19,12 @@ function Lista() {
   
       obtenerDatos();
     }, [tipoSeleccionado]);
+
+    return (
+        <>
 <section className='c-lista'>
 
-{setData.map((pokemon, index) => (
+{data.map((pokemon, index) => (
   <div className='c-lista-pokemon'
 
   key={index}>
@@ -33,4 +36,6 @@ function Lista() {
   </div>
 ))}
 </section>
+</>
+    )
 }
