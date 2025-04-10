@@ -1,3 +1,9 @@
+import { useState, useEffect } from "react";
+import './style.css'
+import filtro from "../filtros"
+
+
+
 function Lista() {
     const [data, setData] = useState([]);
     const [busqueda, setBusqueda] = useState('');
@@ -15,6 +21,10 @@ function Lista() {
           const listaFiltrada = json.pokemon.map(p => p.pokemon);
           setData(listaFiltrada);
         }
+      };
+
+      const handleTipoChange = (tipo) => {
+        setTipoSeleccionado(tipo);
       };
   
       obtenerDatos();

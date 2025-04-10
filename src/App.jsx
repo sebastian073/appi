@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css'
-
 import menu from './componentes/menu'
 import aleatorios from './componentes/aleatorios';
 import lista from './componentes/lista';
