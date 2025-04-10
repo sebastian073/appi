@@ -4,7 +4,7 @@ import { AppProvider } from './contexto/contexto';
 
 import Menu from './componentes/menu'
 import Aleatorios from './componentes/aleatorios';
-import Lista from './componentes/lista';
+import lista from './componentes/lista';
 import Capturados from './componentes/capturados';
 import Favoritos from './componentes/favoritos';
 import Usuarios from './componentes/usuarios';
