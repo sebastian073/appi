@@ -1,15 +1,10 @@
 import { useState, useEffect, useContext } from 'react'
-import { useParams } from "react-router-dom"; 
-import { AppContext } from '../../contexto/contexto';
+import { data, useParams } from "react-router-dom"; 
+import './style.css'
 
 function Detalle() {
-
   const { name } = useParams(); 
   const [datapoke, setDatapoke] = useState([]);
-  const { favoritos, setFavoritos } = useContext(AppContext);
-  const esFavorito = favoritos.some(p => p.id === datapoke.id);
- 
-
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
       .then(response => response.json())
@@ -17,16 +12,7 @@ function Detalle() {
       .catch(error => console.error("Error:", error));
   }, [name]); 
 
-  const toggleFavorito = () => {
-    if (esFavorito) {
-      setFavoritos(favoritos.filter(p => p.id !== datapoke.id));
-    } else {
-      setFavoritos([...favoritos, { id: datapoke.id, nombre: datapoke.name }]);
-    }
-  };
-  
 
-  if (!datapoke) return <p>Cargando...</p>;
   return (
     <div>
       <img 
@@ -40,13 +26,10 @@ function Detalle() {
         <p>Altura: {datapoke.height/ 10} m / Peso: {datapoke.weight/ 10} km</p>
 
 
-        <button onClick={toggleFavorito}>
-          {esFavorito ? '❤️' : '🤍'}
-        </button>
 
     
     </div>
-  );
+  )
 }
 
 export default Detalle;

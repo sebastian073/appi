@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import './style.css'
 import filtro from "../filtros"
 
@@ -8,6 +9,7 @@ function Lista() {
     const [data, setData] = useState([]);
     const [busqueda, setBusqueda] = useState('');
     const [tipoSeleccionado, setTipoSeleccionado] = useState('All');
+    const navigate = useNavigate();
   
     useEffect(() => {
       const obtenerDatos = async () => {
@@ -59,7 +61,7 @@ function Lista() {
 
 {resultados.map((pokemon, index) => (
   <div className='c-lista-pokemon'
-
+  onClick={() => navigate(`/detalle/${pokemon.name}`)}
   key={index}>
     <p>{pokemon.url.split("/")[6]}</p>
     <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.url.split("/")[6]}.png`} 
