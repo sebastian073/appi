@@ -23,18 +23,41 @@ function Lista() {
         }
       };
 
+      obtenerDatos();
+  }, [tipoSeleccionado]);
+
       const handleTipoChange = (tipo) => {
         setTipoSeleccionado(tipo);
       };
-  
-      obtenerDatos();
-    }, [tipoSeleccionado]);
+
+      let resultados = data;
+
+      if (busqueda.length >= 3 && isNaN(busqueda)) {
+        resultados = data.filter(pokemon =>
+          pokemon.name.toLowerCase().includes(busqueda.toLowerCase())
+        );
+    }
+
+    if (!isNaN(busqueda)) {
+        resultados = data.filter(pokemon =>
+          pokemon.url.includes('/' + busqueda)
+        );
+      }
 
     return (
         <>
-<section className='c-lista'>
+       <input
+        type="text"
+        placeholder="Buscar Pokémon"
+        value={busqueda}
+        onChange={(e) => setBusqueda(e.target.value)}
+        className="c-buscador"
+      />
+        <Filtro onTipoChange={handleTipoChange} />
+        <section className='c-lista'>
 
-{data.map((pokemon, index) => (
+
+{resultados.map((pokemon, index) => (
   <div className='c-lista-pokemon'
 
   key={index}>
@@ -48,4 +71,5 @@ function Lista() {
 </section>
 </>
     )
-}
+      }
+
